@@ -1,0 +1,28 @@
+{
+  "name": "restaurant-favs-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "db:create": "createdb restaurants-app",
+    "db:init": "psql -f schema.sql restaurants-app && psql -f seed.sql restaurants-app",
+    "db:destroy": "dropdb restaurants-app",
+    "db:reset": "npm run db:destroy; npm run db:create && npm run db:init",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radishmouse/welp-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/radishmouse/welp-app/issues"
+  },
+  "homepage": "https://github.com/radishmouse/welp-app#readme",
+  "dependencies": {
+    "pg-promise": "^8.6.4"
+  },
+  "devDependencies": {}
+}

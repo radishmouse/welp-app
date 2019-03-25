@@ -13,6 +13,7 @@ create table restaurants (
     name varchar(200),
     address varchar(200),
     street varchar(200),
+    city varchar(200),
     state varchar(50),
     phone varchar(20),
     menu varchar(200),
