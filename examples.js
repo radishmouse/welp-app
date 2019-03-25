@@ -1,9 +1,17 @@
 const db = require('./conn');
 
-db.any('SELECT * from users')
-    .then(function(data) {
-        console.log(data);
-    })
-    .catch(function(error) {
-        // error;
-    });
+function getUserById(theId) {
+    // const theId = 3;
+    return db.any(`SELECT * from users where id=${theId}`)
+}
+
+getUserById(1).then(console.log)
+
+// getUserById(3)
+//     .then(function (aUser) {
+//         console.log(aUser);
+//         getUserById(4)
+//             .then(function (bUser) {
+//                 console.log(bUser);
+//             }) 
+//     })
