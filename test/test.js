@@ -16,8 +16,8 @@ const User = require('../models/user');
 describe('Users model', () => {
     it('should be able to retreive by id', async () => {
         const theUser = await User.getById(3);
-        // theUser.should.be.an.instanceOf(User);
-       theUser.should.have.length(1);
+        theUser.should.be.an.instanceOf(User);
+    //    theUser.should.have.length(1);
     });
 });
 
