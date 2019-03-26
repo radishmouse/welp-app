@@ -33,7 +33,26 @@ class User {
                                                      );
                         return userInstance;
                     })
+                    .catch(() => {
+                        return null; // signal an invalid value
+                    })
     }
+
+    // no "static" since this is an "instance method"
+    // (it belongs to the individual instance)
+    save() {
+        // use .result when you might want a report about
+        // how many rows got affected
+        return db.result(`            
+        update users set 
+            first_name='${this.firstName}',
+            last_name='${this.lastName}',
+            email='${this.email}',
+            password='${this.password}'
+        where id=${this.id}
+        `);
+    }
+
 }
 
 // User.getById(3)
