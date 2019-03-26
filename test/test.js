@@ -42,17 +42,59 @@ describe('Users model', () => {
     it('should update the user', async () => {
         // grab a user with id 2
         const theUser = await User.getById(2);
+
         // update the email
         theUser.email = 'new@new.com';
         // save the user
-        theUser.save()
-            .then(async (report) => {
-                // console.log(report);
-                // re-grab the user with id 2
-                const alsoTheUser = await User.getById(2);
-                // expect the email to be equal to the new value
-                expect(alsoTheUser.email).to.equal('new@new.com');
-            });
+        await theUser.save();
+
+        // re-grab the user with id 2
+        const alsoTheUser = await User.getById(2);
+        // expect the email to be equal to the new value
+        expect(theUser.email).to.equal('new@new.com');
+
+
+        // theUser.save()
+        //     .then(async (report) => {
+        //         // console.log(report);
+        //         // re-grab the user with id 2
+        //         const alsoTheUser = await User.getById(2);
+        //         // expect the email to be equal to the new value
+        //         expect(alsoTheUser.email).to.equal('new3asdfadf@new.com');
+        //     });
     });
+
+
+    it('should not have the same email after updating it', async () => {
+        // grab a user with id 2
+        const theUser = await User.getById(2);
+        // grab the current value for the email field
+        const theOldEmail = theUser.email;
+
+        // update the email to a new value
+        // using the unix timestamp as part of the address
+        const theNewEmail = `new${new Date().getTime()}@email.com`;
+        theUser.email = theNewEmail;
+
+        // save the user to the database
+        await theUser.save();
+
+        // re-grab the user with id 2
+        const alsoTheUser = await User.getById(2);
+
+        // expect the email not to be equal to the new value;
+        expect(theUser.email).not.be.to.equal(theOldEmail);
+        expect(theUser.email).to.equal(theNewEmail);
+
+
+        // theUser.save()
+        //     .then(async (report) => {
+        //         // console.log(report);
+        //         // re-grab the user with id 2
+        //         const alsoTheUser = await User.getById(2);
+        //         // expect the email to be equal to the new value
+        //         expect(alsoTheUser.email).to.equal('new3asdfadf@new.com');
+        //     });
+    });    
 });
 
