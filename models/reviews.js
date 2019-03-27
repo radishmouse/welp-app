@@ -31,9 +31,9 @@ class Review {
         return db.any(`select * from reviews`)
                 .then((arrayOfReviews) => {
                     return arrayOfReviews.map((reviewData) => {
-                        console.log('======================================');
-                        console.log(reviewData);
-                        console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
+                        // console.log('======================================');
+                        // console.log(reviewData);
+                        // console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
                         const aReview = new Review(
                             reviewData.id,
                             reviewData.score,
@@ -41,7 +41,7 @@ class Review {
                             reviewData.restaurant_id,
                             reviewData.user_id
                         );
-                        console.log(aReview);
+                        // console.log(aReview);
                         return aReview;
                     });
                 });

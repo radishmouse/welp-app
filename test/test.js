@@ -102,7 +102,41 @@ describe('User model', () => {
         //         // expect the email to be equal to the new value
         //         expect(alsoTheUser.email).to.equal('new3asdfadf@new.com');
         //     });
-    });    
+    });   
+    
+    it('should encrypt the password', async () => {
+        const password = "bacon";
+        // get a user with id 1
+        const theUser = await User.getById(1);
+        // set their password field to "bacon"
+        theUser.setPassword(password);
+
+        // compare their password to 
+        expect(theUser.password).not.to.equal(password);
+        // it should be false
+    });
+
+    it('should be able to check for correct passwords', async () => {
+        // get a user with id 1
+        const theUser = await User.getById(1);
+        // set their password field to "bacon"
+        theUser.setPassword("bacon");
+
+        // save them to the database
+        await theUser.save();
+
+        // get them back out of the database
+        const sameUser = await User.getById(1);
+
+        // ask them if their password is "bacon"
+        const isCorrectPassword = sameUser.checkPassword("bacon");
+        expect(isCorrectPassword).to.be.true;
+
+        const isNotCorrectPassword = sameUser.checkPassword("tofu");
+        expect(isNotCorrectPassword).to.be.false;
+    })
+
+    
 });
 
 describe('Review model', () => {
@@ -124,6 +158,26 @@ describe('Review model', () => {
             expect(aBunchOfReviews[i]).to.be.an.instanceOf(Review);
         }
     });
+});
 
-    // Can I get a review by user?
+describe('Users and Reviews', () => {
+    it('a user instance should be able to retrieve all their reviews', async () => {
+        // grab a user by id 3
+        const theUser = await User.getById(3);
+        // then get all their reviews
+
+
+        // const theReviews = await theUser.getReviews();
+        const theReviews = await theUser.reviews;
+
+
+        // confirm that their reviews are in an array
+        expect(theReviews).to.be.an.instanceOf(Array);
+        // and that the array is the correct length, which should be 3
+        expect(theReviews).to.have.lengthOf(3);
+        // and that each one is an instance of Review
+        for (let i=0; i<theReviews.length; i++) {
+            expect(theReviews[i]).to.be.an.instanceOf(Review);
+        }
+    })
 });
