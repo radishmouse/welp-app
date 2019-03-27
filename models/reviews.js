@@ -27,6 +27,26 @@ class Review {
                 });
     }
     // getAll is a static method
+    static getAll() {
+        return db.any(`select * from reviews`)
+                .then((arrayOfReviews) => {
+                    return arrayOfReviews.map((reviewData) => {
+                        console.log('======================================');
+                        console.log(reviewData);
+                        console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
+                        const aReview = new Review(
+                            reviewData.id,
+                            reviewData.score,
+                            reviewData.content,
+                            reviewData.restaurant_id,
+                            reviewData.user_id
+                        );
+                        console.log(aReview);
+                        return aReview;
+                    });
+                });
+    }
+
     // static getAll() {
     //     // .any returns 0 or more results in an array
     //     // but that's async, so we `return` the call to db.any
