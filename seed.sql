@@ -20,6 +20,8 @@ insert into reviews
     (score, content, restaurant_id, user_id)
 values
     (4, 'The char on my steak was as black as my soul. Cant recommend this place enough!', 3, 3),
+    (4, 'The char on my steak was as black as my soul. Cant recommend this place enough!', 2, 3),
+    (4, 'The char on my steak was as black as my soul. Cant recommend this place enough!', 1, 3),
     (5, 'I like the water that was yellow and bubbly. Ive never had Coors b4!', 1, 4),
     (1, 'Never in my (very long) life have I had such a bad meal. I dont know where the chef studied, but the cuisine has a hallmark Durmstang flavor to it. Blech!', 4, 2),
     (3, 'Not my black forest cake, but certainly serviceable. A little fussy looking, but tastes just fine once you strip away all the dressing.', 2, 1)
