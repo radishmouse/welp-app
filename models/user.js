@@ -53,12 +53,17 @@ class User {
         `);
     }
 
+    // get all reviews written by this user
+    getReviews() {
+
+    }
+
 }
 
-// User.getById(3)
-//     .then((user) => {
-//         console.log(user);
-//     });
+User.getById(3)
+    .then((user) => {
+        console.log(user);
+    });
 
 // export my User model
 module.exports = User;

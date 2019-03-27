@@ -39,6 +39,12 @@ describe('Users model', () => {
     //    theUser.should.have.length(1);
     });
 
+    // As long as there is no exception thrown in an it block,
+    // that counts as a passing test.
+    // it('should solve global warming', async () => {});
+    // it('should cure cancer', async () => {});
+    // it('should make me rich', async () => {});
+
     it('should update the user', async () => {
         // grab a user with id 2
         const theUser = await User.getById(2);
@@ -50,7 +56,7 @@ describe('Users model', () => {
 
         // re-grab the user with id 2
         const alsoTheUser = await User.getById(2);
-        // expect the email to be equal to the new value
+        // // expect the email to be equal to the new value
         expect(theUser.email).to.equal('new@new.com');
 
 
@@ -60,7 +66,7 @@ describe('Users model', () => {
         //         // re-grab the user with id 2
         //         const alsoTheUser = await User.getById(2);
         //         // expect the email to be equal to the new value
-        //         expect(alsoTheUser.email).to.equal('new3asdfadf@new.com');
+        //         expect(alsoTheUser.email).to.equal('neashfakfaksgfaksjgfajsgfajsgfsjafgasjfgsajfgsjagdfsaw@new.com');
         //     });
     });
 
@@ -83,8 +89,8 @@ describe('Users model', () => {
         const alsoTheUser = await User.getById(2);
 
         // expect the email not to be equal to the new value;
-        expect(theUser.email).not.be.to.equal(theOldEmail);
-        expect(theUser.email).to.equal(theNewEmail);
+        expect(alsoTheUser.email).not.be.to.equal(theOldEmail);
+        expect(alsoTheUser.email).to.equal(theNewEmail);
 
 
         // theUser.save()
