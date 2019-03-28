@@ -58,12 +58,13 @@ const server = http.createServer(async (req, res) => {
                 body += chunk.toString();
             });
 
-            req.on('end', () => {
+            req.on('end', async () => {
                 const parsedBody = querystring.parse(body);
                 console.log('====================');
                 console.log(parsedBody);
                 console.log('^^^^^^ BODY OF FORM ^^^^^^^^');
-                res.end('{ "message": "it sounds like you would like create"}');
+                const newUserId = await User.add(parsedBody);
+                res.end(`{ "id": ${newUserId}}`);
             });
 
 
