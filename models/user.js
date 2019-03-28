@@ -44,7 +44,12 @@ class User {
         return db.any(`select * from users`)
                 .then((arrayOfUsers) => {
                     return arrayOfUsers.map((userData) => {
-                        const aUser = new User(userData.id, userData.first_name, userData.last_name, userData.email, userData.password);
+                        const aUser = new User(
+                                                userData.id, 
+                                                userData.first_name, 
+                                                userData.last_name, 
+                                                userData.email, 
+                                                userData.password);
                         return aUser;
                     })
                 })
