@@ -17,6 +17,10 @@ class User {
         this.password = password;
     }
 
+    static delete(id) {
+        return db.result('delete from users where id=$1', [id]);
+    }
+
     static add(userData) {
         // do an insert into the database
         // not using ${} because I don't want to interpolate
@@ -26,11 +30,12 @@ class User {
                 (first_name, last_name, email, password)
             values 
                 ($1, $2, $3, $4)
-            returning id
+            returning id, first_name, last_name
         `, [userData.first_name, userData.last_name, userData.email, userData.password])
         .then((data) => {
-            console.log("you did the thing! good job.");
-            console.log(`new user id is ${data.id}`);
+            console.log(data);
+            // console.log("you did the thing! good job.");
+            // console.log(`new user id is ${data.id}`);
             return data.id;
         })
         // and return the id of the new user
