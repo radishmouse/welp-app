@@ -24,7 +24,11 @@ app.get('/users', async (req, res) => {
     res.json(allUsers);
 });
 app.get('/users/:id', async (req, res) => {
-    const theUser = await User.getById(req.params.id);
+    // How to grab a piece out of req.params (or any object):
+    // const id = req.params.id;
+    // This is known as "destructuring"
+    const {id} = req.params;
+    const theUser = await User.getById(id);
     res.json(theUser);
 });
 
