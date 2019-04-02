@@ -1,8 +1,6 @@
 const restaurants = require('express').Router();
+const all = require('./all');
 
-restaurants.get('/', (req, res) => {
-    console.log('Restaurants Page');
-    res.send('Restaurants page');
-});
+restaurants.get('/', all);
 
 module.exports = restaurants;

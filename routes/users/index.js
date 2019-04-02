@@ -1,8 +1,8 @@
 const users = require('express').Router();
+const all = require('./all');
+const single = require('./single')
 
-users.get('/', (req, res) => {
-    console.log('Users Page');
-    res.send('Users page');
-});
+users.get('/', all);
+users.get('/:id', single)
 
 module.exports = users;
