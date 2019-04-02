@@ -25,6 +25,7 @@
   "homepage": "https://github.com/radishmouse/welp-app#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "express": "^4.16.4",
     "pg-promise": "^8.6.4"
   },
   "devDependencies": {
