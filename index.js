@@ -6,10 +6,6 @@ const PORT = 3000;
 // It's roughly equivalent to the result of calling `http.createServer()`
 const app = express();
 
-// Import my model class
-const Restaurant = require('./models/restaurants');
-const User = require('./models/user');
-
 // Import our routes
 const routes = require('./routes');
 

@@ -1,5 +1,8 @@
 const Restaurant = require('../../models/restaurants');
 
 module.exports = async (req, res) => {
-    res.send('Restaurants route');
+  const allRestaurants = await Restaurant.getAll();
+  console.log('Restaurants', allRestaurants);
+
+  res.status(200).json({ allRestaurants });
   };
