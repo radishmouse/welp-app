@@ -15,4 +15,3 @@ app.use('/', routes);
 // Listen on our PORT
 app.listen(PORT, () => {
     console.log(`Your amazing express app is running on port ${PORT}`);
-});
