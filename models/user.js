@@ -78,6 +78,40 @@ class User {
                 })
     }
 
+    // I think it should *not* be static
+    // static update(id, userData) {
+        // Why not static?
+        // Because you have to retrieve the user anyway
+        // in order to see what all their other existing info is.
+    // }
+
+    // options:
+    // 1. set the this.email property to the newEmail and then call .save()
+    async updateEmail(newEmail) {
+        this.email = newEmail;
+        await this.save();
+    }
+
+    // 2. write a clever updater
+    // where the argument looks like: { first_name: 'oakley' }
+    // or { email: 'oakley@oakley.com', last_name: 'smith' }
+    async update(updatedInfo) {
+        // first, we copy values from the updatedInfo object
+        // this probably/maybe will cause a black hole??
+        // this = {
+        //     ...this,
+        //     updatedInfo
+        // };
+
+        // This is better/more clear
+        Object.keys(updatedInfo).forEach(key => {
+            this[key] = updatedInfo[key];
+        });
+
+        // then we save to the database
+        await this.save();
+    }
+
     // no "static" since this is an "instance method"
     // (it belongs to the individual instance)
     save() {

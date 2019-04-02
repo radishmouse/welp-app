@@ -32,6 +32,10 @@ app.get('/users/:id', async (req, res) => {
     res.json(theUser);
 });
 
+app.put('/users/:id', (req, res) => {
+    // call our user.update() function with req.body
+});
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
