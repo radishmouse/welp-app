@@ -13,8 +13,9 @@
       class="
         alert 
         alert-primary       
-        ${ message ? `visible` : `d-none` }
       "
+      ${ message ? `` : `hidden` }
+      
     >${message}</h2>
     <form
         action="/login"

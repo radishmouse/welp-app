@@ -9,13 +9,12 @@
 </head>
 <body>
     <h1>Login to Welp</h1>
-    <h2 
-      class="
-        alert 
-        alert-primary       
-        ${ message ? `visible` : `d-none` }
-      "
-    >${message}</h2>
+    <h2 class="alert alert-primary">${
+        message ? 
+                    message 
+                : 
+                    "Please log in to see your dashboard"
+    }</h2>
     <form
         action="/login"
         method="POST"
