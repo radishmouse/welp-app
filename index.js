@@ -19,11 +19,23 @@ app.set('view engine', 'html'); // tell express to use as its view engine the th
 
 app.set('views', 'views'); // tell express where to find the view files. (The second argument is the name of the directory where my template files will live.)
 
-// When they ask for the login page, send the login form
+// Configure express to use the built-in middleware
+// that can deal with form data.
+app.use(express.urlencoded({ extended: true }));
+
+
+// When they ask for the login page, send the login form.
 app.get('/login', (req, res) => {
     // send them the form!!!
     // res.send('this is not the login form');
     res.render('login-form');
+});
+
+// When they submit the form, process the form data.
+app.post('/login', (req, res) => {
+    console.log(req.body.email);
+    console.log(req.body.password);
+    res.send('no soup for you');
 });
 
 
