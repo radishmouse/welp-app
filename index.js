@@ -5,6 +5,23 @@ const app = express();              // Create a new express app.
 const http = require('http');
 const querystring = require('querystring');
 
+// require my session and session storage modules
+// This module lets express track users
+// as they go from page to page.
+const session = require('express-session');
+
+// Import the session storage module, and wire it up
+// to the session module.
+const FileStore = require('session-file-store')(session);
+
+// tell express to use the session modules
+app.use(session({
+    store: new FileStore(),  // no options for now
+    secret: 'ljahfkadbfkcahsvcfkasgbfkasjgfksa'
+}));
+
+
+
 // const hostname = '127.0.0.1';
 const port = 3000;
 
@@ -40,12 +57,17 @@ app.get('/login', (req, res) => {
 app.post('/login', async (req, res) => {
     console.log(req.body.email);
     console.log(req.body.password);
-    // res.send('no soup for you');
-    // TODO: check password for real.
+
     const theUser = await User.getByEmail(req.body.email);
     const passwordIsCorrect = theUser.checkPassword(req.body.password);
     if (passwordIsCorrect) {
-        res.redirect('/dashboard');
+        // Save the user's id to the session.
+        req.session.user = theUser.id;
+        // Make sure the session is saved
+        // before we redirect.
+        req.session.save(() => {
+            res.redirect('/dashboard');
+        });
     } else {
         // send the form back, but with the email already filled out.
         res.render('login-form', {
@@ -55,18 +77,9 @@ app.post('/login', async (req, res) => {
             }
         });
     }
-  
 });
-
-// async function demo() {
-//     const user = await User.getByEmail('puppypower@yahoo.com');
-//     user.setPassword("password");
-//     await user.save();
-//     console.log('you did the thing');
-// }
-// demo();
-
 app.get('/dashboard', (req, res) => {
+    console.log(`The user's id is: ${req.session.user}`);
     res.send('welcome to your welp dashboard');
 });
 
