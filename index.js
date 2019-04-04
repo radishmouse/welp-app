@@ -79,8 +79,12 @@ app.post('/login', async (req, res) => {
     }
 });
 app.get('/dashboard', (req, res) => {
-    console.log(`The user's id is: ${req.session.user}`);
-    res.send('welcome to your welp dashboard');
+    if (req.session.user) {        
+        console.log(`The user's id is: ${req.session.user}`);
+        res.send('welcome to your welp dashboard');
+    } else {
+        res.redirect('/login');
+    }
 });
 
 
