@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon --ignore sessions index.js",
     "db:create": "createdb restaurants-app",
     "db:init": "psql -f schema.sql restaurants-app && psql -f seed.sql restaurants-app",
     "db:destroy": "dropdb restaurants-app",
